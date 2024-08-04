@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Recommendations</title>
+</head>
+<body>
+    <h1>Book Recommendations</h1>
+    <form id="search-form">
+        <input type="text" id="query" placeholder="Search for books">
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var query = document.getElementById('query').value;
+            fetch(`/api/search/?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    var resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';
+                    data.forEach(book => {
+                        var bookDiv = document.createElement('div');
+                        bookDiv.innerHTML = `<h2>${book.title}</h2>
+                                             <p>Author: ${book.author}</p>
+                                             <p>Description: ${book.description}</p>
+                                             <img src="${book.cover_image}" alt="${book.title}">
+                                             <p>Rating: ${book.rating}</p>`;
+                        resultsDiv.appendChild(bookDiv);
+                    });
+                });
+        });
+    </script>
+</body>
+
+</html>
