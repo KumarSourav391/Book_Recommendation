@@ -8,14 +8,17 @@
    cd Book_Recommendation
 
 2. Install dependencies:
+   ```sh
    pip install -r requirements.txt
 
-3. Make migrations and migrate:
+4. Make migrations and migrate:
+   ```sh
    python manage.py makemigrations
    python manage.py migrate
 
-4. Run the server:
+6. Run the server:
+   ```sh
    python manage.py runserver
 
-5. Access the application at http://localhost:8000.
+8. Access the application at http://localhost:8000.
 
